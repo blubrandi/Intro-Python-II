@@ -33,6 +33,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+print(room["treasure"].s_to.name)
+
 #
 # Main
 #
