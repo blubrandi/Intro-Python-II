@@ -40,9 +40,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-name = input("\nWhat is your name, Adventurer?")
+name = input("\nWhat is your name, Adventurer? ")
 player = Player(name, room['outside'])
-print(f"\nWelcome to the game, {player.name}.")
+print(f"\nWelcome to your new Adventure, {player.name}.")
 
 
 # Write a loop that:
@@ -52,26 +52,18 @@ game_is_playing = True
 while game_is_playing:
 #
 # * Prints the current room name
-    print(f"\nYou are currently {player.current_room.name}")
+    print(f"\nYou are currently {player.current_room.name}.")
 
 # * Prints the current description (the textwrap module might be useful here).
-    print(f"{player.current_room.description}.")
+    print(f"\t{player.current_room.description}.")
 
 # * Waits for user input and decides what to do.
 # Print an error message if the movement isn't allowed.
 # If the user enters "q", quit the game.
 
-    player_input = input(f"\nWhich direction would you like to go, {player.name}?  \nYou can choose north, east, south, or west (n, e, s, w)").lower().strip()
+    player_input = input(f"\nWhich direction would you like to go, {player.name}?  \n\tType n to travel North, s to travel South, e to travel East, or w to travel West.\n\n\t(You can also type q to end your adventure early.)\n").lower().strip()
     
-    if player_input == "north": 
-        player_input = "n"
-    elif player_input == "south":
-        player_input == "s"
-    elif player_input == "west":
-        player_input == "w"
-    elif player_input == "east":
-        player_input == "e"
-    elif player_input == "q":
+    if player_input == "q":
         game_is_playing = False
         print("Your adventure has ended.")
     else:
@@ -79,7 +71,13 @@ while game_is_playing:
     print(player_input)
 
 # If the user enters a cardinal direction, attempt to move to the room there.
+
     cardinal_direction = ["n", "e", "s", "w"]
+
+    if player_input in cardinal_direction: 
+        player.move_player(player_input)
+    else:
+        print("Please choose a valid direction.")
 
 else:
     game_is_playing = False
